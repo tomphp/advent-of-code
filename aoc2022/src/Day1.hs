@@ -25,9 +25,10 @@ loadElves inputFilePath = do
   return $ first (tshow . errorBundlePretty) parsed
 
 printResults :: Results -> IO ()
-printResults Results {numElves, maxCalories} = do
+printResults Results {numElves, maxCalories, top3Calories} = do
   TIO.putStrLn $ "Elves loaded: " <> tshow numElves
   TIO.putStrLn $ "Max Elf: " <> tshow maxCalories
+  TIO.putStrLn $ "Top 3: " <> tshow top3Calories
 
 printError :: Text -> IO ()
 printError = TIO.putStrLn . tshow

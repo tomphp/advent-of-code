@@ -29,6 +29,7 @@ default-extensions:
 - GeneralizedNewtypeDeriving
 - NamedFieldPuns
 - OverloadedStrings
+- RecordWildCards
 - TypeApplications
 
 ghc-options:
