@@ -1,0 +1,1 @@
+--command="stack ghci aoc2022:lib aoc2022:test:aoc2022-test --ghc-options='-Werror -Wall -fobject-code'"
