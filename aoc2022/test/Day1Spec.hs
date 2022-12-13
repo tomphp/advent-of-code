@@ -4,4 +4,4 @@ import Test.Hspec
 
 spec :: Spec
 spec = describe "day 1" $ do
-    it "xxx" $ "c" `shouldBe` ("c" :: String)
+  it "xxx" $ "c" `shouldBe` ("c" :: String)

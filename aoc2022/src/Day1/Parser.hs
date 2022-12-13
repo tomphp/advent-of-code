@@ -3,12 +3,10 @@ module Day1.Parser (parseInput, elf, sack, foodItem) where
 import Control.Applicative ((<|>))
 import Data.Text (Text)
 import Data.Void (Void)
-import Text.Megaparsec (Parsec)
-import Text.Megaparsec (ParseErrorBundle, runParser, many, some, eof)
+import Day1.Elf (Calories, Elf (Elf))
+import Text.Megaparsec (ParseErrorBundle, Parsec, eof, many, runParser, some)
 import Text.Megaparsec.Char (eol)
 import Text.Megaparsec.Char.Lexer
-
-import Day1.Elf(Elf(Elf), Calories)
 
 parseInput :: Text -> Either (ParseErrorBundle Text Void) [Elf]
 parseInput = runParser parseElves ""
@@ -16,7 +14,7 @@ parseInput = runParser parseElves ""
 parseElves :: Parsec Void Text [Elf]
 parseElves = many elf
 
-elf ::  Parsec Void Text Elf
+elf :: Parsec Void Text Elf
 elf = Elf <$> sack
 
 sack :: Parsec Void Text [Calories]
