@@ -1,6 +1,7 @@
 module Day1.Parser (parseInput, elf, sack, foodItem) where
 
 import Control.Applicative ((<|>))
+import Control.Monad (void)
 import Data.Text (Text)
 import Data.Void (Void)
 import Day1.Elf (Calories, Elf (Elf))
@@ -24,4 +25,4 @@ foodItem :: Parsec Void Text Calories
 foodItem = decimal <* endOfLineOrFile
 
 endOfLineOrFile :: Parsec Void Text ()
-endOfLineOrFile = eof <|> (() <$ eol)
+endOfLineOrFile = eof <|> void eol
