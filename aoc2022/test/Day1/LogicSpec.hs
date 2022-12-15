@@ -1,11 +1,11 @@
-module Day1.ChallengeSpec (spec) where
+module Day1.LogicSpec (spec) where
 
-import Day1.Challenge (Results (Results, maxCalories, numElves, top3Calories), getStats)
 import Day1.Elf (Elf (Elf))
+import Day1.Logic (Results (Results, maxCalories, numElves, top3Calories), getStats)
 import Test.Hspec
 
 spec :: Spec
-spec = describe "Day1.Challenge" $ do
+spec = describe "Day1.Logic" $ do
   describe "getStats" $ do
     it "returns results for no elves" $ do
       getStats []

@@ -21,15 +21,23 @@ description:         Please see the README on GitHub at <https://github.com/tomp
 
 dependencies:
 - base >= 4.7 && < 5
+- containers
+- fmt
 - megaparsec
+- mtl
 - text
 
 default-extensions:
 - DerivingStrategies
+- ExistentialQuantification
+- FlexibleContexts
 - GeneralizedNewtypeDeriving
+- LambdaCase
 - NamedFieldPuns
 - OverloadedStrings
+- RankNTypes
 - RecordWildCards
+- ScopedTypeVariables
 - TypeApplications
 
 ghc-options:
@@ -68,4 +76,5 @@ tests:
     - -Wno-missing-export-lists
     dependencies:
     - aoc2022
+    - QuickCheck
     - hspec

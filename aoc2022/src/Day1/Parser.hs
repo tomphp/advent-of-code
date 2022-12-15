@@ -1,19 +1,14 @@
-module Day1.Parser (parseInput, elf, sack, foodItem) where
+module Day1.Parser (input, elf, sack, foodItem) where
 
-import Control.Applicative ((<|>))
-import Control.Monad (void)
+import Common.Parser (endOfLineOrFile)
 import Data.Text (Text)
 import Data.Void (Void)
 import Day1.Elf (Calories, Elf (Elf))
-import Text.Megaparsec (ParseErrorBundle, Parsec, eof, many, runParser, some)
-import Text.Megaparsec.Char (eol)
+import Text.Megaparsec (Parsec, many, some)
 import Text.Megaparsec.Char.Lexer
 
-parseInput :: Text -> Either (ParseErrorBundle Text Void) [Elf]
-parseInput = runParser parseElves ""
-
-parseElves :: Parsec Void Text [Elf]
-parseElves = many elf
+input :: Parsec Void Text [Elf]
+input = many elf
 
 elf :: Parsec Void Text Elf
 elf = Elf <$> sack
@@ -23,6 +18,3 @@ sack = some foodItem <* endOfLineOrFile
 
 foodItem :: Parsec Void Text Calories
 foodItem = decimal <* endOfLineOrFile
-
-endOfLineOrFile :: Parsec Void Text ()
-endOfLineOrFile = eof <|> void eol

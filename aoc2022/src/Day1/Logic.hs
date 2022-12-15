@@ -1,4 +1,4 @@
-module Day1.Challenge (Results (..), getStats) where
+module Day1.Logic (Results (..), getStats) where
 
 import Data.List (sort)
 import Data.Maybe (fromMaybe, listToMaybe)
@@ -10,15 +10,12 @@ data Results = Results
     maxCalories :: Calories,
     top3Calories :: Calories
   }
-  deriving (Eq, Show)
+  deriving stock (Eq, Show)
 
 getStats :: [Elf] -> Results
-getStats elves =
-  Results
-    { numElves = length elves,
-      ..
-    }
+getStats elves = Results {..}
   where
+    numElves = length elves
     sortedCalories = reverse $ sort $ map Elf.totalCalories elves
     maxCalories = headOrElse 0 sortedCalories
     top3Calories = sum $ take 3 sortedCalories

@@ -10,10 +10,10 @@ spec :: Spec
 spec = describe "Day1.Parser" $ do
   describe "parseInput" $ do
     it "returns an empty list when given an empty string" $ do
-      parseInput "" `shouldBe` Right []
+      M.runParser input "" "" `shouldBe` Right []
 
     it "returns parsed elves" $ do
-      parseInput "1000\n2000\n\n3000" `shouldBe` Right [Elf [1000, 2000], Elf [3000]]
+      M.runParser input "" "1000\n2000\n\n3000" `shouldBe` Right [Elf [1000, 2000], Elf [3000]]
 
   describe "foodItem" $ do
     it "parses a single food item" $ do
