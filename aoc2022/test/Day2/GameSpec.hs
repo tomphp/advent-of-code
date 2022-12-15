@@ -4,34 +4,14 @@ import Day2.Game
   ( Game (Game, theirs, yours),
     Move (Paper, Rock, Scissors),
     Result (Draw, Lose, Win),
+    defeaterOf,
+    loserTo,
     result,
-    scoreMove,
-    scoreResult,
   )
 import Test.Hspec
 
 spec :: Spec
 spec = describe "Day2.Game" $ do
-  describe "scoreMove" $ do
-    it "returns 1 for Rock" $ do
-      scoreMove Rock `shouldBe` 1
-
-    it "returns 2 for Paper" $ do
-      scoreMove Paper `shouldBe` 2
-
-    it "returns 3 for Scissors" $ do
-      scoreMove Scissors `shouldBe` 3
-
-  describe "scoreResult" $ do
-    it "returns 0 for Lose" $ do
-      scoreResult Lose `shouldBe` 0
-
-    it "returns 3 for Draw" $ do
-      scoreResult Draw `shouldBe` 3
-
-    it "returns 6 for Win" $ do
-      scoreResult Win `shouldBe` 6
-
   describe "result" $ do
     it "return Win for winning games" $ do
       result (Game {yours = Rock, theirs = Scissors}) `shouldBe` Win
@@ -47,3 +27,23 @@ spec = describe "Day2.Game" $ do
       result (Game {yours = Rock, theirs = Paper}) `shouldBe` Lose
       result (Game {yours = Paper, theirs = Scissors}) `shouldBe` Lose
       result (Game {yours = Scissors, theirs = Rock}) `shouldBe` Lose
+
+  describe "defeaterOf" $ do
+    it "returns Paper for Rock" $
+      defeaterOf Rock `shouldBe` Paper
+
+    it "returns Rock for Scissors" $
+      defeaterOf Scissors `shouldBe` Rock
+
+    it "returns Scissors for Paper" $
+      defeaterOf Paper `shouldBe` Scissors
+
+  describe "loserOf" $ do
+    it "returns Rock for Paper" $
+      loserTo Paper `shouldBe` Rock
+
+    it "returns Scissors for Rock" $
+      loserTo Rock `shouldBe` Scissors
+
+    it "returns Paper for Scissors" $
+      loserTo Scissors `shouldBe` Paper

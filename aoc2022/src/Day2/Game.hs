@@ -2,11 +2,9 @@ module Day2.Game
   ( Move (..),
     Result (..),
     Game (..),
-    Score,
     result,
-    scoreGame,
-    scoreMove,
-    scoreResult,
+    defeaterOf,
+    loserTo,
   )
 where
 
@@ -19,21 +17,6 @@ data Game = Game {yours :: Move, theirs :: Move}
 data Result = Win | Draw | Lose
   deriving stock (Eq, Show)
 
-newtype Score = Score Int
-  deriving stock (Eq, Show)
-  deriving newtype (Num)
-
-scoreGame :: Game -> Score
-scoreGame game@(Game {yours}) = scoreResult (result game) + scoreMove yours
-
-scoreMove :: Move -> Score
-scoreMove = Score . succ . fromEnum
-
-scoreResult :: Result -> Score
-scoreResult Lose = 0
-scoreResult Draw = 3
-scoreResult Win = 6
-
 result :: Game -> Result
 result Game {..}
   | yours == theirs = Draw
@@ -43,7 +26,15 @@ result Game {..}
 defeaterOf :: Move -> Move
 defeaterOf = succWrap
 
+loserTo :: Move -> Move
+loserTo = predWrap
+
 succWrap :: (Bounded a, Enum a, Eq a) => a -> a
 succWrap move
   | move == maxBound = minBound
   | otherwise = succ move
+
+predWrap :: (Bounded a, Enum a, Eq a) => a -> a
+predWrap move
+  | move == minBound = maxBound
+  | otherwise = pred move

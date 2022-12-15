@@ -37,6 +37,8 @@ library
       Day2.Logic
       Day2.Parser
       Day2.Printer
+      Day2.Score
+      Day2.Strategy
   other-modules:
       Paths_aoc2022
   hs-source-dirs:
@@ -102,6 +104,8 @@ test-suite aoc2022-test
       Day1Spec
       Day2.GameSpec
       Day2.ParserSpec
+      Day2.ScoreSpec
+      Day2.StrategySpec
       Paths_aoc2022
   hs-source-dirs:
       test

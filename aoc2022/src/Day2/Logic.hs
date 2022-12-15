@@ -1,9 +1,22 @@
 module Day2.Logic (Result (..), calculateScore) where
 
-import Day2.Game (Game, Score)
-import qualified Day2.Game as Game
+import Day2.Game (Game)
+import Day2.Score (Score)
+import qualified Day2.Score as Score
+import Day2.Strategy (Strategy)
+import qualified Day2.Strategy as Strategy
 
-newtype Result = Result {score :: Score}
+data Result = Result
+  { firstScore :: Score,
+    secondScore :: Score
+  }
 
-calculateScore :: [Game] -> Result
-calculateScore games = Result $ sum $ Game.scoreGame <$> games
+calculateScore :: ([Game], [Strategy]) -> Result
+calculateScore (games, strategies) =
+  Result
+    { firstScore = scoreGames games,
+      secondScore = scoreGames $ Strategy.toGame <$> strategies
+    }
+
+scoreGames :: [Game] -> Score
+scoreGames = sum . fmap Score.scoreGame
